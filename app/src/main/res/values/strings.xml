@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Block Car</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_blocked_car">ManageBlockerCarsActivity</string>
+    <string name="title_activity_blocking_car">BlockingCarsActivity</string>
+    <string name="blockCarButton">Block</string>
+    <string name="unBlockCarButton">Unblock</string>
+    <string name="whoBlocksButton">Who is Blocking Me?</string>
+    <string name="hintCarNumber">Car Number</string>
+    <string name="hintPhoneNumber">Phone Number</string>
+    <string name="title_activity_manage_cars">ManageCarsActivity</string>
+    <string name="title_activity_signin">Car Block</string>
+    <string name="signin"><u><b><i>No account yet? Create one</i></b></u></string>
+    <string name="signout"><u><b><i>Sign Out</i></b></u></string>
+
+    <string-array name="options_array">
+        <item>Manage Cars</item>
+        <item>Manage Phones</item>
+        <item>Profile Image</item>
+        <item>Sign Out</item>
+        <item>About</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+</resources>
