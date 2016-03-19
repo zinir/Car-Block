@@ -19,6 +19,13 @@
         android:inputType="textVisiblePassword"
         android:visibility="gone" />
 
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/myDetailsListView"
+        android:layout_margin="1dp"
+        android:layout_weight="5" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -28,7 +35,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"></LinearLayout>
+            android:layout_weight="2"></LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -42,14 +49,14 @@
                 android:id="@+id/addAttribImageButton"
                 android:src="@android:drawable/ic_input_add"
                 android:background="#93c4d3"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"></LinearLayout>
+            android:layout_weight="2"></LinearLayout>
 
         <ImageButton
             android:layout_width="match_parent"
@@ -61,10 +68,4 @@
             android:visibility="gone" />
 
     </LinearLayout>
-
-    <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/myDetailsListView"
-        android:layout_margin="1dp" />
 </LinearLayout>
