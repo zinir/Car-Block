@@ -29,5 +29,4 @@ public interface IDataAccessLayer {
     void GetBlockingCars(int userId,IAsyncCallBack searchCallBack);
     void GetPhoneNumber(int userId,IAsyncCallBack searchCallBack);
     void AddUserDetailToDataBase(UserProfile item,IAsyncCallBack searchCallBack);
-    void GetUserInfoByPhoneNumber(String phoneNumber,IAsyncCallBack searchCallBack);
 }
