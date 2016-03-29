@@ -98,6 +98,12 @@ public class WebDb implements IDataAccessLayer {
     }
 
     @Override
+    public void GetUserInfoByPhoneNumber(String phoneNumber, IAsyncCallBack searchCallBack) {
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUserInfo.php?phoneNumber=" + phoneNumber);
+    }
+
+    @Override
     public void getUserDetails(int userId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUserDetails.php?userId=" + userId + "&exclude=false");

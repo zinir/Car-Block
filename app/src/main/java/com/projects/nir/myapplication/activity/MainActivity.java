@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
                 getActivity().finish();
             } else if (option == 4) {
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Car Block 1.1")
+                        .setTitle("Car Block 1.3")
                         .setMessage("Created by Nir Zilkha")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
