@@ -36,7 +36,7 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.activity_signup);
 
         // get reference to db helper
-        _DataAccessLayer = new WebDb(this);
+        _DataAccessLayer = new WebDb(this,getString(R.string.preifx));
 
         final EditText userName = (EditText) findViewById(R.id.signUpUserNameEditText);
         final EditText password = (EditText) findViewById(R.id.signUpPasswordEditText);

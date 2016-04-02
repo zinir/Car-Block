@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences pref = getSharedPreferences(SignInActivity.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
             String selectedImagePath = setImageFromUri(data.getData());
 
-            IDataAccessLayer _DataAccessLayer = new WebDb(this);
+            IDataAccessLayer _DataAccessLayer = new WebDb(this,getString(R.string.preifx));
             _DataAccessLayer.UpdateUserImage(userId, selectedImagePath, null);
         }
     }
@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
                 getActivity().finish();
             } else if (option == 4) {
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Car Block 1.1")
+                        .setTitle("Car Block 1.4")
                         .setMessage("Created by Nir Zilkha")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -368,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    IDataAccessLayer _DataAccessLayer = new WebDb(getActivity());
+                    IDataAccessLayer _DataAccessLayer = new WebDb(getActivity(),getString(R.string.preifx));
                     _DataAccessLayer.GetPhoneNumber(userId, new IAsyncCallBack() {
                         @Override
                         public void SearchTaskDone(String result) {

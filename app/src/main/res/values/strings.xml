@@ -13,7 +13,7 @@
     <string name="signin"><u><b><i>No account yet? Create one</i></b></u></string>
     <string name="signout"><u><b><i>Sign Out</i></b></u></string>
     <string name="restore"><u><b><i>Restore User Name and Password</i></b></u></string>
-
+    <string name="preifx">Dev</string>
     <string-array name="options_array">
         <item>Manage Cars</item>
         <item>Manage Phones</item>

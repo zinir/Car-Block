@@ -35,7 +35,7 @@ public class UnblockCarsActivity extends Activity {
         setContentView(R.layout.activity_unblock_cars);
 
         // get reference to db helper
-        _DataAccessLayer = new WebDb(this);
+        _DataAccessLayer = new WebDb(this,getString(R.string.preifx));
 
         final int userId = getIntent().getExtras().getInt(SignInActivity.USER_ID_KEY);
 

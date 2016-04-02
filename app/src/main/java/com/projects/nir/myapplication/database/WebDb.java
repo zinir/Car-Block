@@ -25,16 +25,18 @@ import javax.crypto.spec.SecretKeySpec;
 public class WebDb implements IDataAccessLayer {
     Context _context;
     User temp = null;
+    String _prefix ="";
 
-    public WebDb(Context context) {
+    public WebDb(Context context,String prefix) {
         _context = context;
+        _prefix = prefix;
     }
 
     @Override
     public void getUser(int userId, IAsyncCallBack searchCallBack) {
         temp = null;
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Verify User");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUser.php?userId=" + String.valueOf(userId));
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetUser.php?userId=" + String.valueOf(userId));
     }
 
     @Override
@@ -75,92 +77,92 @@ public class WebDb implements IDataAccessLayer {
         if (imageuri != null)
           ImageUri = Base64.encodeToString(imageuri, Base64.DEFAULT);*/
 
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/AddUserToDataBase.php?userName=" + Item.UserName + "&firstName=" + Item.FirstName + "&password=" + Item.Password + "&imageUrl=" + Item.ImageUri);
-       // searchWeb.execute("http://www.carblock.netne.net/Scripts/AddUserToDataBase.php?userName=" + UserName + "&firstName=" + FirstName + "&password=" + Password + "&imageUrl=" + ImageUri);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/AddUserToDataBase.php?userName=" + Item.UserName + "&firstName=" + Item.FirstName + "&password=" + Item.Password + "&imageUrl=" + Item.ImageUri);
+       // searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/AddUserToDataBase.php?userName=" + UserName + "&firstName=" + FirstName + "&password=" + Password + "&imageUrl=" + ImageUri);
     }
 
     @Override
     public void VerifyLogin(String userName, String password, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Verify Login");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/VerifyLogin.php?userName=" + userName + "&password=" + password);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/VerifyLogin.php?userName=" + userName + "&password=" + password);
     }
 
     @Override
     public void IsUserNameExists(String userName, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/IsUserNameExists.php?userName=" + userName);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/IsUserNameExists.php?userName=" + userName);
     }
 
     @Override
     public void AddUserDetailToDataBase(UserProfile item, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Updating Information");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/AddUserDetailToDataBase.php?userId=" + item.userId + "&attrib=" + item.attrib + "&attribType=" + item.attribType);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/AddUserDetailToDataBase.php?userId=" + item.userId + "&attrib=" + item.attrib + "&attribType=" + item.attribType);
     }
 
     @Override
     public void getUserDetails(int userId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUserDetails.php?userId=" + userId + "&exclude=false");
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetUserDetails.php?userId=" + userId + "&exclude=false");
     }
 
     @Override
     public void getProfile(int profileId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetProfile.php?profileId=" + profileId);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetProfile.php?profileId=" + profileId);
     }
 
     @Override
     public void deleteUserDetails(String key, int id, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Deleting...");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/DeleteUserDetails.php?" + key + "=" + id);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/DeleteUserDetails.php?" + key + "=" + id);
     }
 
 
     @Override
     public void GetBlockingCars(int userId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Get Blocking Cars");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetBlockingCars.php?userId=" + String.valueOf(userId));
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetBlockingCars.php?userId=" + String.valueOf(userId));
     }
 
     @Override
     public void SearchCars(int userId, String search, int serachId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"Searching");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/SearchCars.php?userId=" + String.valueOf(userId) + "&search=" + search + "&searchId=" + serachId);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/SearchCars.php?userId=" + String.valueOf(userId) + "&search=" + search + "&searchId=" + serachId);
     }
 
     @Override
     public void GetPhoneNumber(int userId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetPhoneNumber.php?userId=" + String.valueOf(userId));
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetPhoneNumber.php?userId=" + String.valueOf(userId));
     }
 
     @Override
     public void AddBlockingRelation(BlockedRelation Item, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Blocking...");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/AddBlockingRelation.php?blockingUserId=" + Item.blockingUserId + "&blockedUserId=" + Item.blockedUserId + "&blockedUserProfileId=" + Item.blockedUserProfileId);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/AddBlockingRelation.php?blockingUserId=" + Item.blockingUserId + "&blockedUserId=" + Item.blockedUserId + "&blockedUserProfileId=" + Item.blockedUserProfileId);
     }
 
     @Override
     public void DeleteBlockingRelation(BlockedRelation Item, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Unblocking");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/DeleteBlockingRelation.php?blockingUserId=" + Item.blockingUserId + "&blockedUserProfileId=" + Item.blockedUserProfileId);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/DeleteBlockingRelation.php?blockingUserId=" + Item.blockingUserId + "&blockedUserProfileId=" + Item.blockedUserProfileId);
     }
 
     @Override
     public void GetBlocked(int userId, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetBlocked.php?blockingUserId=" + userId);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetBlocked.php?blockingUserId=" + userId);
     }
 
     @Override
     public void UpdateUserImage(int userId, String imageUri, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Updating Image");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/UpdateUserImage.php?userId=" + userId + "&imageUrl=" + imageUri);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/UpdateUserImage.php?userId=" + userId + "&imageUrl=" + imageUri);
     }
     @Override
     public void GetUserInfoByPhoneNumber(String phoneNumber, IAsyncCallBack searchCallBack) {
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Retrieving Information");
-        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUserInfo.php?phoneNumber=" + phoneNumber);
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetUserInfo.php?phoneNumber=" + phoneNumber);
     }
 
 }

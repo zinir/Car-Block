@@ -43,7 +43,7 @@ public class SignInActivity extends Activity {
 
         // get reference to db helper
         //_DataAccessLayer = new DbOpenHelper(this);
-        _DataAccessLayer = new WebDb(this);
+        _DataAccessLayer = new WebDb(this,getString(R.string.preifx));
 
         final SharedPreferences pref = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
 

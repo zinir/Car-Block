@@ -32,7 +32,7 @@ public class WhoBlocksMeActivity extends Activity {
         setContentView(R.layout.activity_blocking_cars);
 
         // get reference to db helper
-        _DataAccessLayer = new WebDb(this);
+        _DataAccessLayer = new WebDb(this,getString(R.string.preifx));
 
         _BlockedDetailsList = new ArrayList<>();
 

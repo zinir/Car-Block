@@ -45,7 +45,7 @@ public class UserProfileActivity extends Activity {
         setContentView(R.layout.activity_user_profile);
 
         // get reference to db helper
-        _DataAccessLayer = new WebDb(this);
+        _DataAccessLayer = new WebDb(this,getString(R.string.preifx));
 
         _UserDetailList = new ArrayList<>();
 
