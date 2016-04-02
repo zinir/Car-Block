@@ -156,6 +156,14 @@ public class SignInActivity extends Activity {
                 builder.show();
             }
         });
+
+        signInTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignInActivity.this, SignUpActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     //---sends an SMS message to another device---

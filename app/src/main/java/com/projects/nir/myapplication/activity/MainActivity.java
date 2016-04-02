@@ -36,6 +36,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -349,6 +350,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 getActivity().finish();
             } else if (option == 4) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Car Block\nhttp://play.google.com/store/apps/details?id=com.projects.nir.myapplication");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            } else if (option == 5) {
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Car Block 1.4")
                         .setMessage("Created by Nir Zilkha")

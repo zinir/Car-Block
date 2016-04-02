@@ -10,15 +10,16 @@
     <string name="hintPhoneNumber">Phone Number</string>
     <string name="title_activity_manage_cars">ManageCarsActivity</string>
     <string name="title_activity_signin">Car Block</string>
-    <string name="signin"><u><b><i>No account yet? Create one</i></b></u></string>
+    <string name="signin"><u><b><i>Sign Up</i></b></u></string>
     <string name="signout"><u><b><i>Sign Out</i></b></u></string>
     <string name="restore"><u><b><i>Restore User Name and Password</i></b></u></string>
-    <string name="preifx">Dev</string>
+    <string name="preifx"></string>
     <string-array name="options_array">
         <item>Manage Cars</item>
         <item>Manage Phones</item>
         <item>Profile Image</item>
         <item>Sign Out</item>
+        <item>Share</item>
         <item>About</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
