@@ -14,18 +14,23 @@ import java.net.URL;
 /**
  * Created by Zilkha on 29/11/2014.
  */
-public class SearchWebAsyncTask extends AsyncTask<String, Integer, String> {
+public class SearchWebAsyncTask extends AsyncTask<String, String, String> {
 
 
     private Context mActivity;
-    //private ProgressDialog mDialog;
+    private ProgressDialog mDialog;
     private StringBuilder Response;
     private IAsyncCallBack TaskSearchCallBack;
+    private String _progressString;
 
-    public SearchWebAsyncTask(Context context,IAsyncCallBack searchCallBack) {
+    public SearchWebAsyncTask(Context context,IAsyncCallBack searchCallBack,boolean hasProgress,String progressString) {
         mActivity = context;
         TaskSearchCallBack = searchCallBack;
-       // mDialog = new ProgressDialog(context);
+        if (hasProgress)
+            mDialog = new ProgressDialog(context);
+        else
+            mDialog = null;
+        _progressString = progressString;
     }
 
     protected String doInBackground(String... serachString) {
@@ -34,18 +39,26 @@ public class SearchWebAsyncTask extends AsyncTask<String, Integer, String> {
 
     protected void onPreExecute() {
         // Reset the progress bar...
-     //   mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-     //   mDialog.setCancelable(false);
+        if (mDialog !=null)
+        {
+            mDialog.setTitle("Please Wait");
+            mDialog.setMessage(_progressString);
+            mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mDialog.setCancelable(false);
+            mDialog.show();
+        }
     }
 
-    protected void onProgressUpdate(Integer... progress) {
-        //mDialog.show();
+    protected void onProgressUpdate(String... progress) {
     }
 
     protected void onPostExecute(String result) {
         TaskSearchCallBack.SearchTaskDone(result);
-        // Close the progress dialog
-     //   mDialog.dismiss();
+        if (mDialog !=null)
+        {
+            // Close the progress dialog
+            mDialog.dismiss();
+        }
     }
 
     private String search(String searchString) {
@@ -55,7 +68,6 @@ public class SearchWebAsyncTask extends AsyncTask<String, Integer, String> {
         InputStreamReader input_stream_reader = null;
         Response = new StringBuilder();
         try {
-            publishProgress(0);
             URL url = new URL(searchString);
             httpCon = (HttpURLConnection) url.openConnection();
             if (httpCon.getResponseCode() != HttpURLConnection.HTTP_OK) {
@@ -67,11 +79,9 @@ public class SearchWebAsyncTask extends AsyncTask<String, Integer, String> {
             input = new BufferedReader(input_stream_reader);
             String line;
             long total = 0;
-            publishProgress(0);
             while ((line = input.readLine()) != null) {
                 total += line.length();
                 Response.append(line + "\n");
-                publishProgress((int) ((total * 100) / lengthOfFile));
             }
 
         } catch (Exception e) {

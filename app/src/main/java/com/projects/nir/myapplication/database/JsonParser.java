@@ -21,6 +21,9 @@ public class JsonParser {
         JSONObject webResult;
         try
         {
+            if (json.equals(""))
+                return false;
+
             int webInfo = json.indexOf("\n<!-- Hosting24 Analytics Code -->\n");
             json = json.substring(0, webInfo);
             webResult = new JSONObject(json);

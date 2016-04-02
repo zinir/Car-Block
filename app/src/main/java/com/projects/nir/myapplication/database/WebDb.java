@@ -33,13 +33,13 @@ public class WebDb implements IDataAccessLayer {
     @Override
     public void getUser(int userId, IAsyncCallBack searchCallBack) {
         temp = null;
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Verify User");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUser.php?userId=" + String.valueOf(userId));
     }
 
     @Override
     public void AddUserToDataBase(User Item, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Adding User");
 
 /*        // Set up secret key spec for 128-bit AES encryption and decryption
         SecretKeySpec sks = null;
@@ -81,81 +81,86 @@ public class WebDb implements IDataAccessLayer {
 
     @Override
     public void VerifyLogin(String userName, String password, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Verify Login");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/VerifyLogin.php?userName=" + userName + "&password=" + password);
     }
 
     @Override
     public void IsUserNameExists(String userName, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/IsUserNameExists.php?userName=" + userName);
     }
 
     @Override
     public void AddUserDetailToDataBase(UserProfile item, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Updating Information");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/AddUserDetailToDataBase.php?userId=" + item.userId + "&attrib=" + item.attrib + "&attribType=" + item.attribType);
     }
 
     @Override
     public void getUserDetails(int userId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUserDetails.php?userId=" + userId + "&exclude=false");
     }
 
     @Override
     public void getProfile(int profileId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetProfile.php?profileId=" + profileId);
     }
 
     @Override
     public void deleteUserDetails(String key, int id, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Deleting...");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/DeleteUserDetails.php?" + key + "=" + id);
     }
 
 
     @Override
     public void GetBlockingCars(int userId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Get Blocking Cars");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetBlockingCars.php?userId=" + String.valueOf(userId));
     }
 
     @Override
     public void SearchCars(int userId, String search, int serachId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"Searching");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/SearchCars.php?userId=" + String.valueOf(userId) + "&search=" + search + "&searchId=" + serachId);
     }
 
     @Override
     public void GetPhoneNumber(int userId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetPhoneNumber.php?userId=" + String.valueOf(userId));
     }
 
     @Override
     public void AddBlockingRelation(BlockedRelation Item, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Blocking...");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/AddBlockingRelation.php?blockingUserId=" + Item.blockingUserId + "&blockedUserId=" + Item.blockedUserId + "&blockedUserProfileId=" + Item.blockedUserProfileId);
     }
 
     @Override
     public void DeleteBlockingRelation(BlockedRelation Item, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Unblocking");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/DeleteBlockingRelation.php?blockingUserId=" + Item.blockingUserId + "&blockedUserProfileId=" + Item.blockedUserProfileId);
     }
 
     @Override
     public void GetBlocked(int userId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/GetBlocked.php?blockingUserId=" + userId);
     }
 
     @Override
     public void UpdateUserImage(int userId, String imageUri, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack);
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Updating Image");
         searchWeb.execute("http://www.carblock.netne.net/Scripts/UpdateUserImage.php?userId=" + userId + "&imageUrl=" + imageUri);
+    }
+    @Override
+    public void GetUserInfoByPhoneNumber(String phoneNumber, IAsyncCallBack searchCallBack) {
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Retrieving Information");
+        searchWeb.execute("http://www.carblock.netne.net/Scripts/GetUserInfo.php?phoneNumber=" + phoneNumber);
     }
 
 }

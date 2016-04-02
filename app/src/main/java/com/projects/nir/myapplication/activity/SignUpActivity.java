@@ -43,7 +43,7 @@ public class SignUpActivity extends Activity {
         final EditText firstName = (EditText) findViewById(R.id.signUpUserFirstNameEditText);
         profile_image = (CircleImageView) findViewById(R.id.signup_image);
 
-        Button signUpButton = (Button) findViewById(R.id.signUpButton);
+        final Button signUpButton = (Button) findViewById(R.id.signUpButton);
         Button profileImageButton = (Button) findViewById(R.id.signUpProfileImageButton);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
