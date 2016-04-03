@@ -53,7 +53,9 @@ public class SearchWebAsyncTask extends AsyncTask<String, String, String> {
     }
 
     protected void onPostExecute(String result) {
-        TaskSearchCallBack.SearchTaskDone(result);
+        if (TaskSearchCallBack != null)
+            TaskSearchCallBack.SearchTaskDone(result);
+
         if (mDialog !=null)
         {
             // Close the progress dialog
