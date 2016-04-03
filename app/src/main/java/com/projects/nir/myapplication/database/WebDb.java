@@ -150,7 +150,7 @@ public class WebDb implements IDataAccessLayer {
 
     @Override
     public void GetBlocked(int userId, IAsyncCallBack searchCallBack) {
-        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,false,"");
+        SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Retrieving Information");
         searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/GetBlocked.php?blockingUserId=" + userId);
     }
 
