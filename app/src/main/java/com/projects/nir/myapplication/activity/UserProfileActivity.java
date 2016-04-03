@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.projects.nir.myapplication.R;
 import com.projects.nir.myapplication.Entities.UserProfile;
+import com.projects.nir.myapplication.ThirdParty.DebouncedOnClickListener;
 import com.projects.nir.myapplication.adapters.UserProfileListAdapter;
 import com.projects.nir.myapplication.database.DataBaseConstants;
 import com.projects.nir.myapplication.database.JsonParser;
@@ -101,9 +102,9 @@ public class UserProfileActivity extends Activity {
         });
 
         ImageButton delete = (ImageButton) findViewById(R.id.deleteImageButton);
-        delete.setOnClickListener(new View.OnClickListener() {
+        delete.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                 if (_SelectedItemPosition == -1)
                     return;
 
@@ -118,9 +119,9 @@ public class UserProfileActivity extends Activity {
         });
 
         ImageButton addAttrib = (ImageButton) findViewById(R.id.addAttribImageButton);
-        addAttrib.setOnClickListener(new View.OnClickListener() {
+        addAttrib.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserProfileActivity.this);
                 if (type == DataBaseConstants.ProfileTable.AttribType.CAR_NUM) {

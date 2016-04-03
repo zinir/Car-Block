@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.projects.nir.myapplication.R;
 import com.projects.nir.myapplication.Entities.User;
 import com.projects.nir.myapplication.ThirdParty.CircleImageView;
+import com.projects.nir.myapplication.ThirdParty.DebouncedOnClickListener;
 import com.projects.nir.myapplication.database.JsonParser;
 import com.projects.nir.myapplication.interfaces.IDataAccessLayer;
 import com.projects.nir.myapplication.search.IAsyncCallBack;
@@ -46,9 +47,9 @@ public class SignUpActivity extends Activity {
         final Button signUpButton = (Button) findViewById(R.id.signUpButton);
         Button profileImageButton = (Button) findViewById(R.id.signUpProfileImageButton);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+        signUpButton.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                 final String newUserName = userName.getText().toString();
                 final String newPassword = password.getText().toString();
                 final String newFirstName = firstName.getText().toString();
@@ -86,9 +87,9 @@ public class SignUpActivity extends Activity {
             }
         });
 
-        profileImageButton.setOnClickListener(new View.OnClickListener() {
+        profileImageButton.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                 Intent intent = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

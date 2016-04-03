@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.projects.nir.myapplication.R;
 import com.projects.nir.myapplication.Entities.UserProfile;
+import com.projects.nir.myapplication.ThirdParty.DebouncedOnClickListener;
 import com.projects.nir.myapplication.interfaces.IDataAccessLayer;
 
 import java.util.ArrayList;
@@ -92,9 +93,9 @@ public class BlockedUnblockCarsListAdapter extends BaseAdapter implements Filter
         if (_block) {
            viewHolder.actionButton.setEnabled(requesetdProfile.isBlocked == 0);
         }
-        viewHolder.actionButton.setOnClickListener(new View.OnClickListener() {
+        viewHolder.actionButton.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                 _optionCallBack.callBack(v,requesetdProfile);
             }
         });

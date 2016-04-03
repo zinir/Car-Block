@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.projects.nir.myapplication.Entities.UserProfile;
 import com.projects.nir.myapplication.R;
 import com.projects.nir.myapplication.Entities.User;
+import com.projects.nir.myapplication.ThirdParty.DebouncedOnClickListener;
 import com.projects.nir.myapplication.database.DataBaseConstants;
 import com.projects.nir.myapplication.database.JsonParser;
 import com.projects.nir.myapplication.database.WebDb;
@@ -71,9 +72,9 @@ public class SignInActivity extends Activity {
         TextView signInTextView = (TextView) findViewById(R.id.signInLink);
         TextView restoreTextView = (TextView) findViewById(R.id.restoreLink);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                  _DataAccessLayer.VerifyLogin(userName.getText().toString(), password.getText().toString(), new IAsyncCallBack() {
                     @Override
                     public void SearchTaskDone(String result) {
@@ -97,9 +98,9 @@ public class SignInActivity extends Activity {
         });
 
 
-        restoreTextView.setOnClickListener(new View.OnClickListener() {
+        restoreTextView.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SignInActivity.this);
                 builder.setTitle("Insert Phone Number");
 
@@ -157,9 +158,9 @@ public class SignInActivity extends Activity {
             }
         });
 
-        signInTextView.setOnClickListener(new View.OnClickListener() {
+        signInTextView.setOnClickListener(new DebouncedOnClickListener(3000) {
             @Override
-            public void onClick(View v) {
+            public void onDebouncedClick(View v) {
                 Intent i = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(i);
             }

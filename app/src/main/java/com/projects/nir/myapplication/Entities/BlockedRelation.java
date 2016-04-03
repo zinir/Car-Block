@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.projects.nir.myapplication.ThirdParty.DebouncedOnClickListener;
 import com.projects.nir.myapplication.adapters.BlockingCarsListAdapter;
 import com.projects.nir.myapplication.database.JsonParser;
 import com.projects.nir.myapplication.interfaces.IDataAccessLayer;
@@ -16,7 +17,7 @@ import com.projects.nir.myapplication.search.IAsyncCallBack;
 
 import java.util.ArrayList;
 
-public class BlockedRelation implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class BlockedRelation extends DebouncedOnClickListener implements AdapterView.OnItemSelectedListener {
 
 
     private int _relationId;
@@ -84,7 +85,7 @@ public class BlockedRelation implements AdapterView.OnItemSelectedListener,View.
     }
 
     @Override
-    public void onClick(View v){
+    public void onDebouncedClick(View v){
 
         String uri = "tel:" + selectedPhone;
         Intent intent = new Intent(Intent.ACTION_CALL);
