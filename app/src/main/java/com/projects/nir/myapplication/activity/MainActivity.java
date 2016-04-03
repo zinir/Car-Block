@@ -52,6 +52,7 @@ import android.widget.Toast;
 
 import com.projects.nir.myapplication.R;
 import com.projects.nir.myapplication.ThirdParty.CircleImageView;
+import com.projects.nir.myapplication.ThirdParty.DebouncedOnClickListener;
 import com.projects.nir.myapplication.database.DataBaseConstants;
 import com.projects.nir.myapplication.database.JsonParser;
 import com.projects.nir.myapplication.interfaces.IDataAccessLayer;
@@ -357,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(sendIntent);
             } else if (option == 5) {
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Car Block 1.4")
+                        .setTitle("Car Block 1.5")
                         .setMessage("Created by Nir Zilkha")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -371,9 +372,9 @@ public class MainActivity extends AppCompatActivity {
             Button unblockCarBtn = (Button) rootView.findViewById(R.id.unblockCarButton);
             Button whoBlocksBtn = (Button) rootView.findViewById(R.id.whoBlocksButton);
 
-            blockCarBtn.setOnClickListener(new View.OnClickListener() {
+            blockCarBtn.setOnClickListener(new DebouncedOnClickListener(3000) {
                 @Override
-                public void onClick(View v) {
+                public void onDebouncedClick(View v) {
 
                     IDataAccessLayer _DataAccessLayer = new WebDb(getActivity(),getString(R.string.preifx));
                     _DataAccessLayer.GetPhoneNumber(userId, new IAsyncCallBack() {
@@ -390,9 +391,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            unblockCarBtn.setOnClickListener(new View.OnClickListener() {
+            unblockCarBtn.setOnClickListener(new DebouncedOnClickListener(3000) {
                 @Override
-                public void onClick(View v) {
+                public void onDebouncedClick(View v) {
 
                     Intent i = new Intent(getActivity(), UnblockCarsActivity.class);
                     i.putExtra(SignInActivity.USER_ID_KEY, userId);
@@ -400,9 +401,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            whoBlocksBtn.setOnClickListener(new View.OnClickListener() {
+            whoBlocksBtn.setOnClickListener(new DebouncedOnClickListener(3000) {
                 @Override
-                public void onClick(View v) {
+                public void onDebouncedClick(View v) {
                     Intent i = new Intent(getActivity(), WhoBlocksMeActivity.class);
                     i.putExtra(SignInActivity.USER_ID_KEY, userId);
                     startActivity(i);
