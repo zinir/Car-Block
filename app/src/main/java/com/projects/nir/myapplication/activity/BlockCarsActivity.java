@@ -94,13 +94,20 @@ public class BlockCarsActivity extends Activity {
         // Search list
         _SearchResultCarsListAdapter = new BlockedUnblockCarsListAdapter(this, userId, _DataAccessLayer, _ResultCarList, true, new OptionInterface() {
             @Override
-            public void callBack(final View v, UserProfile userProfile) {
+            public void callBack(final View v, final UserProfile userProfile) {
                 BlockedRelation blockedRelation = new BlockedRelation(userId,userProfile.userId,userProfile.get_Id());
                 _DataAccessLayer.AddBlockingRelation(blockedRelation, new IAsyncCallBack() {
                     @Override
                     public void SearchTaskDone(String result) {
                         if (JsonParser.ParseInsertResult(result) >= 0)
+                        {
                             v.setEnabled(false);
+                            userProfile.isBlocked = 1;
+                        }
+                        else
+                            userProfile.isBlocked = 0;
+
+
                     }
                 });
             }
