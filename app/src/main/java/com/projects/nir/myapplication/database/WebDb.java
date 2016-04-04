@@ -129,12 +129,13 @@ public class WebDb implements IDataAccessLayer {
     public void UpdateUserImage(int userId, String imageUri, IAsyncCallBack searchCallBack) {
         CarBlockApp app = (CarBlockApp)_context.getApplicationContext();
         SearchWebAsyncTask searchWeb = new SearchWebAsyncTask(_context, searchCallBack,true,"Updating Image");
-        try {
+        searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/UpdateUserImage.php?userId=" + userId + "&imageUrl=" + imageUri + "&loggerId=" + app.getUserId());
+        /*try {
             //String query = URLEncoder.encode(imageUri, "utf-8");
-            searchWeb.execute("http://www.carblock.netne.net/"+_prefix+"Scripts/UpdateUserImage.php?userId=" + userId + "&imageUrl=" + imageUri + "&loggerId=" + app.getUserId());
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     @Override
     public void GetUserInfoByPhoneNumber(String phoneNumber, IAsyncCallBack searchCallBack) {
