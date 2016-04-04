@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projects.nir.myapplication.CarBlockApp;
 import com.projects.nir.myapplication.Entities.UserProfile;
 import com.projects.nir.myapplication.R;
 import com.projects.nir.myapplication.Entities.User;
@@ -49,6 +50,10 @@ public class SignInActivity extends Activity {
         final SharedPreferences pref = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
 
         final int userId = pref.getInt(USER_ID_KEY, -1);
+
+        CarBlockApp app = (CarBlockApp)getApplicationContext();
+        app.setUserId(userId);
+
         if (userId != -1) {
             _DataAccessLayer.getUser(userId, new IAsyncCallBack() {
                 @Override
@@ -56,6 +61,8 @@ public class SignInActivity extends Activity {
                     Intent i = new Intent(SignInActivity.this, MainActivity.class);
                     User user = JsonParser.ParseUser(result);
                     if (user != null) {
+                        CarBlockApp app = (CarBlockApp)getApplicationContext();
+                        app.setUserId(userId);
                         i.putExtra(USER_ID_KEY, userId);
                         i.putExtra(USER_NAME_KEY, user.UserName);
                         i.putExtra(USER_NAME_IMAGE_URI_KEY, user.ImageUri);
@@ -85,6 +92,8 @@ public class SignInActivity extends Activity {
                             edit.commit();
 
                             Intent i = new Intent(SignInActivity.this, MainActivity.class);
+                            CarBlockApp app = (CarBlockApp)getApplicationContext();
+                            app.setUserId(user.get_Id());
                             i.putExtra(USER_ID_KEY, user.get_Id());
                             i.putExtra(USER_NAME_KEY, user.UserName);
                             i.putExtra(USER_NAME_IMAGE_URI_KEY, user.ImageUri);
