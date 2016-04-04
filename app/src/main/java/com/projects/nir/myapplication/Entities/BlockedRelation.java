@@ -32,6 +32,7 @@ public class BlockedRelation extends DebouncedOnClickListener implements Adapter
     public Context  context;
 
     public BlockedRelation(int _Id, int blockingUserId, int blockedUserId, int blockedUserProfileId) {
+        super(3000);
         this._relationId = _Id;
         this.blockingUserId = blockingUserId;
         this.blockedUserId = blockedUserId;
@@ -39,12 +40,14 @@ public class BlockedRelation extends DebouncedOnClickListener implements Adapter
     }
 
     public BlockedRelation(int blockingUserId, int blockedUserId, int blockedUserProfileId) {
+        super(3000);
         this.blockingUserId = blockingUserId;
         this.blockedUserId = blockedUserId;
         this.blockedUserProfileId = blockedUserProfileId;
     }
 
     public BlockedRelation(int _relationId, int blockingUserId, int blockedUserId, int blockedUserProfileId, String blockingUserName) {
+        super(3000);
         this._relationId = _relationId;
         this.blockingUserId = blockingUserId;
         this.blockedUserId = blockedUserId;
